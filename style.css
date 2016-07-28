@@ -1,0 +1,75 @@
+body {
+  font-family: "Open Sans", sans-serif;
+  font-size: 1em;
+}
+
+.masthead {
+  padding: 6em;
+  background-image: url('smoothiebg.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.masthead-heading {
+  color: white;
+  font-weight: 900;
+  font-size: 6em;
+  text-align: center;
+  text-shadow: 2px 2px 2px #000000;
+}
+
+#instructions,
+#ingredients,
+#nutrition {
+  max-width: 36em;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2em;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:link {
+  color: blue;
+}
+
+a:visited {
+  color: blue;
+}
+
+a:hover {
+  font-weight: bold;
+}
+
+.content-footer {
+  padding: 2em;
+  margin-top: 6em;
+  text-align: center;
+}
+
+.social {
+	list-style: none;
+}
+
+.social li {
+  display: inline-block;
+}
+
+.social li img {
+  width: 64px;
+}
+
+.social li img:hover {
+  transform:scale(1.25);
+}
+
+@media screen and (max-width: 500px) {
+  .masthead {
+    padding:  3em 0;
+  }
+  .masthead-heading {
+    font-size: 3em;
+  }
+}
