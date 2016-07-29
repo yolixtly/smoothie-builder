@@ -26,6 +26,36 @@ body {
   margin-right: auto;
   margin-top: 2em;
 }
+.macro {
+  display: inline-block;
+  padding-right: 0.5em;
+  color: darkgreen;
+  margin-bottom: 0;
+}
+
+#nutrition {
+  display: none;
+
+}
+#nutrition h1 {
+    margin-bottom: 0;
+}
+
+#submit {
+    margin: 2em;
+    padding: 1em;
+    margin-left: 9em;
+    background-color: #8BC34A;
+    font-size: 1em;
+    border-radius: 1em;
+    border: transparent;
+    color: white;
+    transition: 0.5s all ease;
+    outline: none;
+}
+#submit:hover {
+  background-color: #406c0d;
+}
 
 a {
   text-decoration: none;
@@ -64,6 +94,7 @@ a:hover {
 .social li img:hover {
   transform:scale(1.25);
 }
+
 
 @media screen and (max-width: 500px) {
   .masthead {

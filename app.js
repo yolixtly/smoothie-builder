@@ -47,13 +47,13 @@ var soyMilk = $('#liquid-2').text(pantry.liquid[2]); //'1 cup soy milk'
 
 function calNutrients(selectedVegetable, selectedFruit, selectedLiquid) {
 
-          var vegetableCalories;
-          var vegetableProtein;
-          var vegetableCarbs;
-          var vegetableFat;
+    var vegetableCalories;
+    var vegetableProtein;
+    var vegetableCarbs;
+    var vegetableFat;
 
     //first vegetable
-    var vegetable = getData(pantry.green[selectedVegetable], function(data){
+    var vegetable = getData(pantry.green[selectedVegetable], function(data) {
         vegetableCalories = data.hits[0].fields.nf_calories;
         console.log('this is for vegetables');
         console.log(vegetableCalories);
@@ -72,17 +72,17 @@ function calNutrients(selectedVegetable, selectedFruit, selectedLiquid) {
     var fruitFat;
 
     //first fruit
-    var fruit = getData(pantry.fruit[selectedFruit], function(data){
-      console.log('this is for fruit');
-      console.log(data);
-      fruitCalories = data.hits[0].fields.nf_calories;
-      console.log(fruitCalories);
-      fruitProtein = data.hits[0].fields.nf_protein;
-      console.log(fruitProtein);
-      fruitCarbs = data.hits[0].fields.nf_total_carbohydrate;
-      console.log(fruitCarbs);
-      fruitFat = data.hits[0].fields.nf_total_fat;
-      console.log(fruitFat);
+    var fruit = getData(pantry.fruit[selectedFruit], function(data) {
+        console.log('this is for fruit');
+        console.log(data);
+        fruitCalories = data.hits[0].fields.nf_calories;
+        console.log(fruitCalories);
+        fruitProtein = data.hits[0].fields.nf_protein;
+        console.log(fruitProtein);
+        fruitCarbs = data.hits[0].fields.nf_total_carbohydrate;
+        console.log(fruitCarbs);
+        fruitFat = data.hits[0].fields.nf_total_fat;
+        console.log(fruitFat);
     });
 
     var liquidCalories;
@@ -91,19 +91,43 @@ function calNutrients(selectedVegetable, selectedFruit, selectedLiquid) {
     var liquidFat;
 
     //firstliquid
-    var liquid = getData(pantry.liquid[selectedLiquid], function(data){
-      console.log('this is for liquid');
-      console.log(data);
-      liquidCalories = data.hits[0].fields.nf_calories;
-      console.log(liquidCalories);
-      liquidProtein = data.hits[0].fields.nf_protein;
-      console.log(liquidProtein);
-      liquidCarbs = data.hits[0].fields.nf_total_carbohydrate;
-      console.log(liquidCarbs);
-      liquidFat = data.hits[0].fields.nf_total_fat;
-      console.log(liquidFat);
-    });
+    var liquid = getData(pantry.liquid[selectedLiquid], function(data) {
+        console.log('this is for liquid');
+        console.log(data);
+        liquidCalories = data.hits[0].fields.nf_calories;
+        console.log(liquidCalories);
+        liquidProtein = data.hits[0].fields.nf_protein;
+        console.log(liquidProtein);
+        liquidCarbs = data.hits[0].fields.nf_total_carbohydrate;
+        console.log(liquidCarbs);
+        liquidFat = data.hits[0].fields.nf_total_fat;
+        console.log(liquidFat);
 
+        // Calculate the Total Calories of our Smoothie:
+        var netCalories = Math.ceil((vegetableCalories + fruitCalories + liquidCalories));
+        console.log('these are the net calories');
+        console.log(netCalories);
+        $('#netCalories').text(netCalories + ' calories');
+
+        // Calculate the Total Carbs of our Smoothie:
+        var netCarbs = Math.ceil((vegetableCarbs + fruitCarbs + liquidCarbs));
+        console.log('these are the net carbs');
+        console.log(netCarbs);
+        $('#netCarbs').text(netCarbs + ' grams');
+
+        // Calculate the Total Protein of our Smoothie:
+        var netProtein = Math.ceil((vegetableProtein + fruitProtein + liquidProtein));
+        console.log('these are the net Protein');
+        console.log(netProtein);
+        $('#netProtein').text(netProtein + ' grams');
+
+        // Calculate the Total Fat of our Smoothie:
+        var netFat = Math.ceil((vegetableFat + fruitFat + liquidFat));
+        console.log('these are the net Fat');
+        console.log(netFat);
+        $('#netFat').text(netFat + ' grams');
+
+    });
 }
 
 
@@ -111,11 +135,12 @@ function calNutrients(selectedVegetable, selectedFruit, selectedLiquid) {
 
 $('#submit').click(function(e) {
     e.preventDefault();
-  // console.log(); //2 cups spinach
-  var vegIndex = $('#vegetables option:selected').val();
-  var fruitIndex = $('#fruit option:selected').val();
-  var liquidIndex = $('#liquid option:selected').val();
-calNutrients(vegIndex, fruitIndex, liquidIndex);
+    // console.log(); //2 cups spinach
+    $('#nutrition').show();
+    var vegIndex = $('#vegetables option:selected').val();
+    var fruitIndex = $('#fruit option:selected').val();
+    var liquidIndex = $('#liquid option:selected').val();
+    calNutrients(vegIndex, fruitIndex, liquidIndex);
 });
 
 
