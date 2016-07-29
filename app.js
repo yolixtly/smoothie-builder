@@ -1,30 +1,20 @@
-// STEP 1 :
-//Create Pantry Object
+// STEP 1 : Create Pantry Object
 var pantry = {
     green: ['1 cup raw spinach', '1 cup raw kale', '1 cup raw broccoli'],
     fruit: ['1 medium raw gala apple', '1 cup raspberries', '1 cup raw bananas'],
     liquid: ['1 cup greek yogurt', '1 cup almond milk', '1 cup soy milk']
 };
 
-//Smoothie Object: this contains all the ingredients of 1 smoothie
-
-
-// Step 1 : get the request / data
+// Step 2 : get the request / data from the nutritionix API
 
 function getData(query, callback) {
-    // var query = '2+cups+spinach';
-
     var url = 'https://api.nutritionix.com/v1_1/search/' + encodeURIComponent(query).replace(/%20/g, "+") +
         '?fields=item_name%2Citem_id%2Cbrand_name%2Cnf_total_carbohydrate%2Cnf_protein%2Cnf_total_fat%2Cnf_calories&appId=603d12ae&appKey=4c3eca869f427543c0d2492300fe4780';
 
     $.getJSON(url, function(data) {
         callback(data);
-        // console.log(data.hits[0].fields.nf_calories);
     });
 }
-
-// Change query based on search variable
-
 
 // Step 2 : A function that is incharge of rendering the info into html
 
@@ -103,7 +93,7 @@ function calNutrients(selectedVegetable, selectedFruit, selectedLiquid) {
         liquidFat = data.hits[0].fields.nf_total_fat;
         console.log(liquidFat);
 
-        // Calculate the Total Calories of our Smoothie:
+    // Calculate the Total Calories of our Smoothie:
         var netCalories = Math.ceil((vegetableCalories + fruitCalories + liquidCalories));
         console.log('these are the net calories');
         console.log(netCalories);
@@ -130,9 +120,7 @@ function calNutrients(selectedVegetable, selectedFruit, selectedLiquid) {
     });
 }
 
-
 // Step 4 : Event handler
-
 $('#submit').click(function(e) {
     e.preventDefault();
     // console.log(); //2 cups spinach
@@ -143,8 +131,21 @@ $('#submit').click(function(e) {
     calNutrients(vegIndex, fruitIndex, liquidIndex);
 });
 
+//Second API Flcker
 
-// Notes
-//  * Need to replace spaces with +
-//	* Clean up API query (get vs post, params, etc)
-//  * May need a for loop if we get page refresh problems
+//  function getFlicker() {
+//     var url = 'https://api.flickr.com/services/rest';
+//     var params = {
+//      method : 'flickr.photos.search',
+//       api_key : '500ecb12edc8c861d2e69492a08ed8f5',
+//       tags : 'smoothie',
+//       format : 'json',
+//       nojsoncallback : 1
+//     }
+//     $.getJSON(url, params, function(data) {
+
+//         console.log(data);
+//     });
+// }
+
+// getFlicker();
