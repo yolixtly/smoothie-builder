@@ -14,12 +14,10 @@ var pantry = {
 function getData(query, callback) {
     // var query = '2+cups+spinach';
 
-    var url = 'https://api.nutritionix.com/v1_1/search/' + encodeURIComponent(query) +
+    var url = 'https://api.nutritionix.com/v1_1/search/' + encodeURIComponent(query).replace(/%20/g, "+") +
         '?fields=item_name%2Citem_id%2Cbrand_name%2Cnf_total_carbohydrate%2Cnf_protein%2Cnf_total_fat%2Cnf_calories&appId=603d12ae&appKey=4c3eca869f427543c0d2492300fe4780';
 
     $.getJSON(url, function(data) {
-        console.log(data);
-         debugger;
         callback(data);
         // console.log(data.hits[0].fields.nf_calories);
     });
@@ -45,23 +43,25 @@ var almondMilk = $('#liquid-1').text(pantry.liquid[1]);
 var soyMilk = $('#liquid-2').text(pantry.liquid[2]); //'1 cup soy milk'
 
 
-// Step 3: Calculate total amount of Nutrients 
+// Step 3: Calculate total amount of Nutrients
 
 function calNutrients(selectedVegetable) {
+
+  function callBack(data){
+    console.log(data);
+  };
     //first vegetable
 
-    // var vegetable = getData(pantry.green[selectedVegetable]);
-    // console.log(selectedVegetable);
+    var vegetable = getData(pantry.green[selectedVegetable], callBack);
+    console.log(selectedVegetable);
     // console.log(vegetable);
     // console.log(getData('apple'));
-    getData('apple', function(data) {
-    	console.log(data);
-    });
+    // getData('apple', callBack);
 
     // getData();
     // //first liquid
     // getData();
-    
+
 
 }
 
@@ -73,8 +73,8 @@ function calNutrients(selectedVegetable) {
 $('#submit').click(function(e) {
     e.preventDefault();
   // console.log(); //2 cups spinach
-  var index = $('#vegetables option:selected').val();
-calNutrients(index);
+  var vegIndex = $('#vegetables option:selected').val();
+calNutrients(vegIndex);
 });
 
 // Notes
