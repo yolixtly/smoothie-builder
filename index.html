@@ -9,38 +9,38 @@
       <h1 class="masthead-heading">Smoothie Builder</h1>
     </header>
     <section id="instructions">
-        <h1>Intructions</h1>
+        <h1>Instructions</h1>
         <p>Select 1 Green Vegetable, 1 Fruit, and 1 Liquid to see the nutrition information for your delicious smoothie!</p>
     </section>
     <section id="ingredients">
       <h1>Ingredients</h1>
-    	<label for="">1.Choose a green Vegetable</label>
+    	<label for="">1. Choose a Green Vegetable</label>
       <select name="" id="">
-        <option value="">spinach</option>
-        <option value="">kale</option>
+        <option value="">Spinach</option>
+        <option value="">Kale</option>
         <option value="">Broccoli</option>
       </select>
         <br>
             <label for="">2. Choose a Fruit</label>
       <select name="" id="">
-        <option value="">spinach</option>
-        <option value="">kale</option>
-        <option value="">Broccoli</option>
+        <option value="">Apple</option>
+        <option value="">Berries</option>
+        <option value="">Banana</option>
       </select>
         <br>
-            <label for="">3.Choose a liquid</label>
+            <label for="">3. Choose a Liquid</label>
       <select name="" id="">
-        <option value="">spinach</option>
-        <option value="">kale</option>
-        <option value="">Broccoli</option>
+        <option value="">Almond Milk</option>
+        <option value="">Soy Milk</option>
+        <option value="">Yogurt</option>
       </select>
     </section>
     <section id="nutrition">
         <h1>Nutrition Information</h1>
-        <p id="calories">Total Calories</p>
-        <p id="carbs">Carbohydrates</p>
-        <p id="protein">Protein</p>
-        <p id="fat">Fat</p>
+        <p id="calories">Total Calories:</p><span id="cal"></span>
+        <p id="carbs">Carbohydrates:</p>
+        <p id="protein">Protein:</p>
+        <p id="fat">Fat:</p>
     </section>
     <footer class="content-footer">
     	<ul class="social">
@@ -49,5 +49,7 @@
           </li>
     	</ul>
     </footer>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+    <script type="text/javascript" src="app.js"></script>
   </body>
 </html>
