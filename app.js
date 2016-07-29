@@ -1,8 +1,8 @@
 // STEP 1 :
 //Create Pantry Object
 var pantry = {
-    green: ['2 cups spinach', '1 cup raw kale', '3/4 cup raw broccoli'],
-    fruit: ['1 apple', '1 cup berries', '1 banana'],
+    green: ['1 cup raw spinach', '1 cup raw kale', '1 cup raw broccoli'],
+    fruit: ['1 medium raw gala apple', '1 cup raspberries', '1 cup raw bananas'],
     liquid: ['1 cup greek yogurt', '1 cup almond milk', '1 cup soy milk']
 };
 
@@ -45,27 +45,66 @@ var soyMilk = $('#liquid-2').text(pantry.liquid[2]); //'1 cup soy milk'
 
 // Step 3: Calculate total amount of Nutrients
 
-function calNutrients(selectedVegetable) {
+function calNutrients(selectedVegetable, selectedFruit, selectedLiquid) {
 
-  function callBack(data){
-    console.log(data);
-  };
+          var vegetableCalories;
+          var vegetableProtein;
+          var vegetableCarbs;
+          var vegetableFat;
+
     //first vegetable
+    var vegetable = getData(pantry.green[selectedVegetable], function(data){
+        vegetableCalories = data.hits[0].fields.nf_calories;
+        console.log('this is for vegetables');
+        console.log(vegetableCalories);
+        vegetableProtein = data.hits[0].fields.nf_protein;
+        console.log(vegetableProtein);
+        vegetableCarbs = data.hits[0].fields.nf_total_carbohydrate;
+        console.log(vegetableCarbs);
+        vegetableFat = data.hits[0].fields.nf_total_fat;
+        console.log(vegetableFat);
 
-    var vegetable = getData(pantry.green[selectedVegetable], callBack);
-    console.log(selectedVegetable);
-    // console.log(vegetable);
-    // console.log(getData('apple'));
-    // getData('apple', callBack);
+    });
 
-    // getData();
-    // //first liquid
-    // getData();
+    var fruitCalories;
+    var fruitProtein;
+    var fruitCarbs;
+    var fruitFat;
 
+    //first fruit
+    var fruit = getData(pantry.fruit[selectedFruit], function(data){
+      console.log('this is for fruit');
+      console.log(data);
+      fruitCalories = data.hits[0].fields.nf_calories;
+      console.log(fruitCalories);
+      fruitProtein = data.hits[0].fields.nf_protein;
+      console.log(fruitProtein);
+      fruitCarbs = data.hits[0].fields.nf_total_carbohydrate;
+      console.log(fruitCarbs);
+      fruitFat = data.hits[0].fields.nf_total_fat;
+      console.log(fruitFat);
+    });
+
+    var liquidCalories;
+    var liquidProtein;
+    var liquidCarbs;
+    var liquidFat;
+
+    //firstliquid
+    var liquid = getData(pantry.liquid[selectedLiquid], function(data){
+      console.log('this is for liquid');
+      console.log(data);
+      liquidCalories = data.hits[0].fields.nf_calories;
+      console.log(liquidCalories);
+      liquidProtein = data.hits[0].fields.nf_protein;
+      console.log(liquidProtein);
+      liquidCarbs = data.hits[0].fields.nf_total_carbohydrate;
+      console.log(liquidCarbs);
+      liquidFat = data.hits[0].fields.nf_total_fat;
+      console.log(liquidFat);
+    });
 
 }
-
-
 
 
 // Step 4 : Event handler
@@ -74,8 +113,11 @@ $('#submit').click(function(e) {
     e.preventDefault();
   // console.log(); //2 cups spinach
   var vegIndex = $('#vegetables option:selected').val();
-calNutrients(vegIndex);
+  var fruitIndex = $('#fruit option:selected').val();
+  var liquidIndex = $('#liquid option:selected').val();
+calNutrients(vegIndex, fruitIndex, liquidIndex);
 });
+
 
 // Notes
 //  * Need to replace spaces with +
