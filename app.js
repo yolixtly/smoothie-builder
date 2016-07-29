@@ -9,7 +9,7 @@ var pantry = {
 
 function getData(query, callback) {
     var url = 'https://api.nutritionix.com/v1_1/search/' + encodeURIComponent(query).replace(/%20/g, "+") +
-        '?fields=item_name%2Citem_id%2Cbrand_name%2Cnf_total_carbohydrate%2Cnf_protein%2Cnf_total_fat%2Cnf_calories&appId=603d12ae&appKey=4c3eca869f427543c0d2492300fe4780';
+        '?fields=item_name%2Citem_id%2Cbrand_name%2Cnf_total_carbohydrate%2Cnf_protein%2Cnf_total_fat%2Cnf_calories&appId=ff5cf7c2&appKey=d79ffb6d5e61fc577afeb44d94dee7e7';
 
     $.getJSON(url, function(data) {
         callback(data);
